@@ -1,14 +1,24 @@
-const express = require('express')
+require('dotenv').config()
+
+const express = require('express');
 
 //express app
-const app = express()
+const app = express();
+
+//middleware
+app.use((req,res,next)=>{
+    console.log(req.path, req.method)
+    next()
+})
 
 //routes
 app.get('/',(req, res)=>{
-    res.json({msg:'Welcome to my app'})
+    res.json({msg:'Welcome to my app'});
 })
 
 //listen for request
-app.listen(4000, ()=>{
-    console.log('Listening on port 4000')
+app.listen(process.env.PORT, ()=>{
+    console.log('Listening on port 4000');
 })
+
+process.env
